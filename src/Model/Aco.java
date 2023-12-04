@@ -1,6 +1,6 @@
 package Model;
 
-public class Aco {
+public class Aco extends Materiais {
     String []descricao = {"alta resistência à oxidação atmosférica"};
     String [] opcoes = {"Aço Inoxidavel"};
     double []precos= {5.30} ;

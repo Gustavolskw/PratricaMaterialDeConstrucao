@@ -1,6 +1,6 @@
 package Model;
 
-public class Tijolos {
+public class Tijolos  extends Materiais{
     String []descricao = {"feitos de argila e cozidos a altas temperaturas para torná-los resistentes à água e ao fogo.",
     "são feitos de materiais especiais que suportam altas temperaturas e são usados em fornos e chaminés.",
    "feitos de vidro triturado e são usados principalmente em aplicações decorativas."};
