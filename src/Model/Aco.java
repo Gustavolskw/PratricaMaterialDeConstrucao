@@ -1,10 +1,10 @@
 package Model;
 
 public class Aco extends Materiais {
-    String []descricao = {"alta resistência à oxidação atmosférica"};
-    String [] opcoes = {"Aço Inoxidavel"};
-    double []precos= {5.30} ;
-    int[] codigos = {90001};
+    protected String []descricao = {"alta resistência à oxidação atmosférica"};
+    protected  String [] opcoes = {"Aço Inoxidavel"};
+    protected double []precos= {5.30} ;
+    protected  int[] codigos = {90001};
 
     public String[] getDescricao() {
         return descricao;
