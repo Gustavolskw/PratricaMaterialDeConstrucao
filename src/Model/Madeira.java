@@ -8,6 +8,8 @@ public class Madeira extends Materiais {
     protected double[] precos= {399, 78, 80};
     protected int[] codigos = {88001, 88002, 88003};
 
+
+
     public String[] getDescricao() {
         return descricao;
     }
@@ -16,12 +18,12 @@ public class Madeira extends Materiais {
         return opcoes;
     }
 
+    public double[] getPrecos() {
+        return precos;
+    }
     public int[] getCodigos() {
         return codigos;
     }
 
-    public double[] getPrecos() {
-        return precos;
 
-    }
 }

@@ -13,16 +13,31 @@ public class Tijolos  extends Materiais{
         return descricao;
     }
 
+    public void setDescricao(String[] descricao) {
+        this.descricao = descricao;
+    }
+
     public String[] getOpcoes() {
         return opcoes;
+    }
+
+    public void setOpcoes(String[] opcoes) {
+        this.opcoes = opcoes;
+    }
+
+    public double[] getPrecos() {
+        return precos;
+    }
+
+    public void setPrecos(double[] precos) {
+        this.precos = precos;
     }
 
     public int[] getCodigos() {
         return codigos;
     }
 
-    public double[] getPrecos() {
-        return precos;
-
+    public void setCodigos(int[] codigos) {
+        this.codigos = codigos;
     }
 }

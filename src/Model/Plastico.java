@@ -15,12 +15,13 @@ public class Plastico  extends Materiais{
         return opcoes;
     }
 
+    public double[] getPrecos() {
+        return precos;
+    }
+
     public int[] getCodigos() {
         return codigos;
     }
 
-    public double[] getPrecos() {
-        return precos;
 
-    }
 }

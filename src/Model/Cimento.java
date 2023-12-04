@@ -7,20 +7,36 @@ public class Cimento  extends Materiais{
     protected  String [] opcoes = {"Cimento Portland", "Cimento de alto-forno","Cimento de baixa hidratação"};
     protected double[] precos= {30, 29, 28};
     protected int[] codigos = {73001, 73002, 73003};
+
     public String[] getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String[] descricao) {
+        this.descricao = descricao;
     }
 
     public String[] getOpcoes() {
         return opcoes;
     }
 
-    public int[] getCodigos() {
-        return codigos;
+    public void setOpcoes(String[] opcoes) {
+        this.opcoes = opcoes;
     }
 
     public double[] getPrecos() {
         return precos;
+    }
 
+    public void setPrecos(double[] precos) {
+        this.precos = precos;
+    }
+
+    public int[] getCodigos() {
+        return codigos;
+    }
+
+    public void setCodigos(int[] codigos) {
+        this.codigos = codigos;
     }
 }

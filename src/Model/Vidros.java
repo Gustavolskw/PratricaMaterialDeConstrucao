@@ -8,6 +8,7 @@ public class Vidros  extends Materiais{
     protected double[] precos= {290, 190, 620};
     protected int[] codigos = {62001, 62002, 62003};
 
+
     public String[] getDescricao() {
         return descricao;
     }
@@ -16,12 +17,13 @@ public class Vidros  extends Materiais{
         return opcoes;
     }
 
+    public double[] getPrecos() {
+        return precos;
+    }
+
     public int[] getCodigos() {
         return codigos;
     }
 
-    public double[] getPrecos() {
-        return precos;
 
-    }
 }
