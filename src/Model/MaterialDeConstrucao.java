@@ -1,19 +1,19 @@
 package Model;
 
+import View.EntradaSaida;
+
 import java.util.ArrayList;
 
 public class MaterialDeConstrucao {
     private String produto;
     private String usuario;
-    private ArrayList<Materiais> listaMadeira= new ArrayList<Materiais>();
-    private ArrayList<Materiais> listaAco= new ArrayList<Materiais>();
-    private ArrayList<Materiais> listaTijolo= new ArrayList<Materiais>();
-    private ArrayList<Materiais> listaPlastico= new ArrayList<Materiais>();
-    private ArrayList<Materiais> listaCimento= new ArrayList<Materiais>();
-    private ArrayList<Materiais> listaVidros= new ArrayList<Materiais>();
     private ArrayList<Materiais> listaDeMateriais= new ArrayList<Materiais>();
+    private ArrayList<Materiais> listaDeCadastrados= new ArrayList<Materiais>();
+    private ArrayList<Materiais> listaDeEntrada= new ArrayList<Materiais>();
 
     //metodos de operaçao
+
+
     public void entradaEmEstoqueVazio(){
 
     }
@@ -23,6 +23,23 @@ public class MaterialDeConstrucao {
     public int saidaDeEstoque(int estoque, int saida ){
         return estoque-=saida;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //getters e setters de variaveis
 
@@ -100,5 +117,21 @@ public class MaterialDeConstrucao {
 
     public void setListaDeMateriais(ArrayList<Materiais> listaDeMateriais) {
         this.listaDeMateriais = listaDeMateriais;
+    }
+
+    public ArrayList<Materiais> getListaDeCadastrados() {
+        return listaDeCadastrados;
+    }
+
+    public void setListaDeCadastrados(ArrayList<Materiais> listaDeCadastrados) {
+        this.listaDeCadastrados = listaDeCadastrados;
+    }
+
+    public ArrayList<Materiais> getListaDeEntrada() {
+        return listaDeEntrada;
+    }
+
+    public void setListaDeEntrada(ArrayList<Materiais> listaDeEntrada) {
+        this.listaDeEntrada = listaDeEntrada;
     }
 }

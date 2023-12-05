@@ -3,7 +3,7 @@ package Model;
 public class Materiais implements IMateriais{
     protected int quantidade;
     protected String produtoNovo;
-    protected int precoNovo;
+    protected float  precoNovo;
     protected int codigoNovo;
     protected String descricaoNovo;
 
@@ -23,11 +23,11 @@ public class Materiais implements IMateriais{
         this.produtoNovo = produtoNovo;
     }
 
-    public int getPrecoNovo() {
+    public float getPrecoNovo() {
         return precoNovo;
     }
 
-    public void setPrecoNovo(int precoNovo) {
+    public void setPrecoNovo(float precoNovo) {
         this.precoNovo = precoNovo;
     }
 
