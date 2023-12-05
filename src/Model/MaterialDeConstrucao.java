@@ -61,77 +61,29 @@ public class MaterialDeConstrucao {
 
 
     //getters e seetters de listas
-
-
-    public ArrayList<Materiais> getListaMadeira() {
-        return listaMadeira;
-    }
-
-    public void setListaMadeira(ArrayList<Materiais> listaMadeira) {
-        this.listaMadeira = listaMadeira;
-    }
-
-    public ArrayList<Materiais> getListaAco() {
-        return listaAco;
-    }
-
-    public void setListaAco(ArrayList<Materiais> listaAco) {
-        this.listaAco = listaAco;
-    }
-
-    public ArrayList<Materiais> getListaTijolo() {
-        return listaTijolo;
-    }
-
-    public void setListaTijolo(ArrayList<Materiais> listaTijolo) {
-        this.listaTijolo = listaTijolo;
-    }
-
-    public ArrayList<Materiais> getListaPlastico() {
-        return listaPlastico;
-    }
-
-    public void setListaPlastico(ArrayList<Materiais> listaPlastico) {
-        this.listaPlastico = listaPlastico;
-    }
-
-    public ArrayList<Materiais> getListaCimento() {
-        return listaCimento;
-    }
-
-    public void setListaCimento(ArrayList<Materiais> listaCimento) {
-        this.listaCimento = listaCimento;
-    }
-
-    public ArrayList<Materiais> getListaVidros() {
-        return listaVidros;
-    }
-
-    public void setListaVidros(ArrayList<Materiais> listaVidros) {
-        this.listaVidros = listaVidros;
-    }
-
-    public ArrayList<Materiais> getListaDeMateriais() {
-        return listaDeMateriais;
-    }
-
-    public void setListaDeMateriais(ArrayList<Materiais> listaDeMateriais) {
-        this.listaDeMateriais = listaDeMateriais;
-    }
-
-    public ArrayList<Materiais> getListaDeCadastrados() {
-        return listaDeCadastrados;
-    }
-
-    public void setListaDeCadastrados(ArrayList<Materiais> listaDeCadastrados) {
-        this.listaDeCadastrados = listaDeCadastrados;
-    }
-
-    public ArrayList<Materiais> getListaDeEntrada() {
-        return listaDeEntrada;
-    }
-
-    public void setListaDeEntrada(ArrayList<Materiais> listaDeEntrada) {
-        this.listaDeEntrada = listaDeEntrada;
-    }
+	 
+	 
+	 public ArrayList<Materiais> getListaDeMateriais() {
+		  return listaDeMateriais;
+	 }
+	 
+	 public void setListaDeMateriais(ArrayList<Materiais> listaDeMateriais) {
+		  this.listaDeMateriais = listaDeMateriais;
+	 }
+	 
+	 public ArrayList<Materiais> getListaDeCadastrados() {
+		  return listaDeCadastrados;
+	 }
+	 
+	 public void setListaDeCadastrados(ArrayList<Materiais> listaDeCadastrados) {
+		  this.listaDeCadastrados = listaDeCadastrados;
+	 }
+	 
+	 public ArrayList<Materiais> getListaDeEntrada() {
+		  return listaDeEntrada;
+	 }
+	 
+	 public void setListaDeEntrada(ArrayList<Materiais> listaDeEntrada) {
+		  this.listaDeEntrada = listaDeEntrada;
+	 }
 }

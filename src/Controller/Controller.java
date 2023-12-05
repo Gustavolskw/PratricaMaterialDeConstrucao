@@ -31,11 +31,12 @@ public class Controller {
                     novoMaterial.setCodigoNovo(EntradaSaida.gerarNovoCodigo());
                     novoMaterial.setPrecoNovo(EntradaSaida.gerarNovoPreco());
                     novoMaterial.setQuantidade(EntradaSaida.quantidadeDeProdutos());
+					listaDeCadastrados.add(novoMaterial);
                     for(Materiais mat : listaDeCadastrados){
                         System.out.println(mat.getCodigoNovo());
                     }
                     novoMaterial.setCodigoNovo(897652);
-                    listaDeCadastrados.set(listaDeCadastrados.indexOf(novoMaterial.getCodigoNovo()),novoMaterial);
+                    listaDeCadastrados.set(listaDeCadastrados.indexOf(0), novoMaterial);
 
                     break;
                 case 1:
