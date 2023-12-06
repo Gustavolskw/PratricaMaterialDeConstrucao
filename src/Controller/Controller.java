@@ -35,9 +35,10 @@ public class Controller {
                     for(Materiais mat : listaDeCadastrados){
                         System.out.println(mat.getCodigoNovo());
                     }
-                    novoMaterial.setCodigoNovo(897652);
-                    listaDeCadastrados.set(listaDeCadastrados.indexOf(0), novoMaterial);
-
+					var refactor = new Materiais();
+                    refactor.setCodigoNovo(897652);
+                    listaDeCadastrados.set(listaDeCadastrados.indexOf(novoMaterial), refactor);
+					 System.out.println(listaDeCadastrados.get(0).getCodigoNovo()+ listaDeCadastrados.get(0).getQuantidade());
                     break;
                 case 1:
                     //Entrada de estoque de produto no estoque
