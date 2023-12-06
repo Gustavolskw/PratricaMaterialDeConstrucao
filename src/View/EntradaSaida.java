@@ -90,11 +90,14 @@ public class EntradaSaida {
         JOptionPane.showMessageDialog(null, listaDeEstoque, "Material de Construção", JOptionPane.INFORMATION_MESSAGE);
     }
     public static void exibeNoterminal(ArrayList<Materiais>listaDeMateriais){
+		 String info1 ="";
+		 
+		 
         for (Materiais material   : listaDeMateriais) {
             if (material instanceof Aco acoMat) {
-                System.out.println(acoMat.getOpcao() + " " + acoMat.getDescricao() + " " + acoMat.getCodigo() + " " + acoMat.getPreco() + " " + acoMat.getQuantidade() + "\n");
+                info1 += acoMat.getOpcao() + " " + acoMat.getDescricao() + " " + acoMat.getCodigo() + " " + acoMat.getPreco() + " " + acoMat.getQuantidade() + "\n";
             } else if (material instanceof Cimento cimentoMat) {
-                System.out.println(cimentoMat.getOpcao() + " " + cimentoMat.getDescricao() + " " + cimentoMat.getCodigo() + " " + cimentoMat.getPreco() + " " + cimentoMat.getQuantidade() + "\n");
+                info1 += cimentoMat.getOpcao() + " " + cimentoMat.getDescricao() + " " + cimentoMat.getCodigo() + " " + cimentoMat.getPreco() + " " + cimentoMat.getQuantidade() + "\n";
             } else if (material instanceof Madeira madeiraMat) {
                 System.out.println(madeiraMat.getOpcao() + " " + madeiraMat.getDescricao() + " " + madeiraMat.getCodigo() + " " + madeiraMat.getPreco() + " " + madeiraMat.getQuantidade() + "\n");
             } else if (material instanceof Plastico plasMat) {
@@ -107,5 +110,6 @@ public class EntradaSaida {
                 System.out.println(prodNovoMat.getProdutoNovo() + " " + prodNovoMat.getDescricaoNovo() + " " + prodNovoMat.getCodigoNovo() + " " + prodNovoMat.getPrecoNovo() + " " + prodNovoMat.getQuantidade() + "\n");
             }
         }
+		JOptionPane.showMessageDialog(null, info1 , "", -1);
     }
 }

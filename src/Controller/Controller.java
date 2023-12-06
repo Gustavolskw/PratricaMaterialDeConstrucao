@@ -12,9 +12,6 @@ public class Controller {
     MaterialDeConstrucao  matConstr = null;
     public void start(){
         this.matConstr = new MaterialDeConstrucao();
-        ArrayList<Materiais> listaDeMateriais= new ArrayList<Materiais>();
-        ArrayList<Materiais> listaDeCadastrados= new ArrayList<Materiais>();
-        ArrayList<Materiais> listaDeEntrada= new ArrayList<Materiais>();
         Aco cadasAco = new Aco();
         Cimento cadasCimento = new Cimento();
         Madeira cadasMadeira = new Madeira();
@@ -51,8 +48,8 @@ public class Controller {
                                     novoMaterial.setCodigoNovo(EntradaSaida.gerarNovoCodigo());
                                     novoMaterial.setPrecoNovo(EntradaSaida.gerarNovoPreco());
                                     novoMaterial.setQuantidade(EntradaSaida.quantidadeDeProdutos());
-                                    listaDeCadastrados.add(novoMaterial);
-                                    listaDeMateriais.add(novoMaterial);
+                                    this.matConstr.acionaCadastrado(novoMaterial);
+									 this.matConstr.adicionaMaterial(novoMaterial);
 
                                     //cadastro de produto<<
                                     break;
@@ -67,12 +64,12 @@ public class Controller {
                                         EntradaSaida.materialDeEntrada(cadasAco.getOpcao(), cadasAco.getDescricao(),cadasAco.getCodigo(), cadasAco.getPreco());
                                         entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
                                         cadasAco.setQuantidade(this.matConstr.adicaoNoEstoque(cadasAco.getQuantidade(), entradaMaterial));
-                                        if (!listaDeMateriais.contains(cadasAco)){
-                                            listaDeMateriais.add(cadasAco);
+                                        if (!this.matConstr.getListaDeMateriais().contains(cadasAco)){
+											 this.matConstr.adicionaMaterial(cadasAco);
                                         }
 
                                         cadasAco.setEntradaQtd(entradaMaterial);
-                                        listaDeEntrada.add(cadasAco);
+										 this.matConstr.acionaEntrada(cadasAco);
 
 
                                     } else if (produto.equalsIgnoreCase("Cimento")) {
@@ -81,24 +78,24 @@ public class Controller {
                                         EntradaSaida.materialDeEntrada(cadasCimento.getOpcao(), cadasCimento.getDescricao(),cadasCimento.getCodigo(), cadasCimento.getPreco());
                                         entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
                                         cadasCimento.setQuantidade(this.matConstr.adicaoNoEstoque(cadasCimento.getQuantidade(), entradaMaterial));
-                                        if (!listaDeMateriais.contains(cadasCimento)){
-                                            listaDeMateriais.add(cadasCimento);
+                                        if (!this.matConstr.getListaDeMateriais().contains(cadasCimento)){
+                                            this.matConstr.adicionaMaterial(cadasCimento);
                                         }
 
                                         cadasCimento.setEntradaQtd(entradaMaterial);
-                                        listaDeEntrada.add(cadasCimento);
+										 this.matConstr.acionaEntrada(cadasCimento);
 
                                     } else if (produto.equalsIgnoreCase("Madeira")) {
 
                                         EntradaSaida.materialDeEntrada(cadasMadeira.getOpcao(), cadasMadeira.getDescricao(),cadasMadeira.getCodigo(), cadasMadeira.getPreco());
                                         entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
                                         cadasMadeira.setQuantidade(this.matConstr.adicaoNoEstoque(cadasMadeira.getQuantidade(), entradaMaterial));
-                                        if (!listaDeMateriais.contains(cadasMadeira)){
-                                            listaDeMateriais.add(cadasMadeira);
+                                        if (!this.matConstr.getListaDeMateriais().contains(cadasMadeira)){
+											 this.matConstr.adicionaMaterial(cadasMadeira);
                                         }
 
                                         cadasMadeira.setEntradaQtd(entradaMaterial);
-                                        listaDeEntrada.add(cadasMadeira);
+										 this.matConstr.acionaEntrada(cadasMadeira);
 
                                     } else if (produto.equalsIgnoreCase("Plastico")) {
 
@@ -106,24 +103,24 @@ public class Controller {
                                         EntradaSaida.materialDeEntrada(cadasPlastico.getOpcao(), cadasPlastico.getDescricao(),cadasPlastico.getCodigo(), cadasPlastico.getPreco());
                                         entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
                                         cadasPlastico.setQuantidade(this.matConstr.adicaoNoEstoque(cadasPlastico.getQuantidade(), entradaMaterial));
-                                        if (!listaDeMateriais.contains(cadasPlastico)){
-                                            listaDeMateriais.add(cadasPlastico);
+                                        if (!this.matConstr.getListaDeMateriais().contains(cadasPlastico)){
+											 this.matConstr.adicionaMaterial(cadasPlastico);
                                         }
 
                                         cadasPlastico.setEntradaQtd(entradaMaterial);
-                                        listaDeEntrada.add(cadasPlastico);
+										 this.matConstr.acionaEntrada(cadasPlastico);
 
                                     } else if (produto.equalsIgnoreCase("Tijolo")) {
 
                                         EntradaSaida.materialDeEntrada(cadasTijolos.getOpcao(), cadasTijolos.getDescricao(),cadasTijolos.getCodigo(), cadasTijolos.getPreco());
                                         entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
                                         cadasTijolos.setQuantidade(this.matConstr.adicaoNoEstoque(cadasTijolos.getQuantidade(), entradaMaterial));
-                                        if (!listaDeMateriais.contains(cadasTijolos)){
-                                            listaDeMateriais.add(cadasTijolos);
+                                        if (!this.matConstr.getListaDeMateriais().contains(cadasTijolos)){
+											 this.matConstr.adicionaMaterial(cadasTijolos);
                                         }
 
                                         cadasTijolos.setEntradaQtd(entradaMaterial);
-                                        listaDeEntrada.add(cadasTijolos);
+										 this.matConstr.acionaEntrada(cadasTijolos);
                                     } else {
                                         //vidro
 
@@ -131,12 +128,12 @@ public class Controller {
                                         EntradaSaida.materialDeEntrada(cadasVidros.getOpcao(), cadasVidros.getDescricao(),cadasVidros.getCodigo(), cadasVidros.getPreco());
                                         entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
                                         cadasVidros.setQuantidade(this.matConstr.adicaoNoEstoque(cadasVidros.getQuantidade(), entradaMaterial));
-                                        if (!listaDeMateriais.contains(cadasVidros)){
-                                            listaDeMateriais.add(cadasVidros);
+                                        if (!this.matConstr.getListaDeMateriais().contains(cadasVidros)){
+											 this.matConstr.adicionaMaterial(cadasVidros);
                                         }
 
                                         cadasVidros.setEntradaQtd(entradaMaterial);
-                                        listaDeEntrada.add(cadasVidros);
+										 this.matConstr.acionaEntrada(cadasVidros);
 
                                     }
 
@@ -149,23 +146,26 @@ public class Controller {
                                     int escolhaDeLista;
                                     escolhaDeLista = EntradaSaida.solicitaEscolhaDeLista();
                                     if(escolhaDeLista==0){
-                                        EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
+                                        this.matConstr.gerarListaDeEstoque();
                                     } else if (escolhaDeLista==1) {
-                                        EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEntrada());
+                                       // EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEntrada());
                                     }else{
-                                        EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
+                                       // EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
                                     }
 
                                     break;
                             }
                             //teste de saida no terminal>>
-                            EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
+							 String retornoDeInfo = this.matConstr.gerarListaDeEstoque();
+                            EntradaSaida.exibirListaDeEstoque(retornoDeInfo);
+							 //EntradaSaida.exibeNoterminal(listaDeMateriais);
 
                             //teste de saida no terminal<<
 
                         } while (escolha != 3);
                     }else{
                         EntradaSaida.msgGeral("Senha Incorreta!!!", 2);
+						
                     }
                     break;
                 case 2:

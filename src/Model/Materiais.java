@@ -1,6 +1,6 @@
 package Model;
 
-public class Materiais implements IMateriais{
+public abstract class Materiais implements IMateriais{
     protected int quantidade;
     protected int entradaQtd;
 
