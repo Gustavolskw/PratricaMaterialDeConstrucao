@@ -1,69 +1,180 @@
 package Controller;
 
-import Model.Materiais;
-import Model.MaterialDeConstrucao;
-import Model.Tijolos;
+import Model.*;
 import View.EntradaSaida;
 
+import javax.accessibility.AccessibleAction;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Controller {
-    MaterialDeConstrucao  MaterialDeConstrucao = null;
+    MaterialDeConstrucao  matConstr = null;
     public void start(){
-        this.MaterialDeConstrucao = new MaterialDeConstrucao();
+        this.matConstr = new MaterialDeConstrucao();
         ArrayList<Materiais> listaDeMateriais= new ArrayList<Materiais>();
         ArrayList<Materiais> listaDeCadastrados= new ArrayList<Materiais>();
         ArrayList<Materiais> listaDeEntrada= new ArrayList<Materiais>();
+        Aco cadasAco = new Aco();
+        Cimento cadasCimento = new Cimento();
+        Madeira cadasMadeira = new Madeira();
+        Plastico cadasPlastico = new Plastico();
+        Tijolos cadasTijolos = new Tijolos();
+        Vidros cadasVidros = new Vidros();
         boolean codigoExistente = false;
-
-
-        int escolha = EntradaSaida.solicitaEscolha();
-
+        int escolha;
+        int opcao;
+        int entradaMaterial = 0;
+        String login;
 
         do {
-            switch (escolha){
-                case 0 :
-                    //cadastro de produto
-                    Materiais novoMaterial = new Materiais();
-                    novoMaterial.setProdutoNovo(EntradaSaida.gerarNovoProduto());
-                    novoMaterial.setDescricaoNovo(EntradaSaida.gerarNovaDescricao());
-                    novoMaterial.setCodigoNovo(EntradaSaida.gerarNovoCodigo());
-                    novoMaterial.setPrecoNovo(EntradaSaida.gerarNovoPreco());
-                    novoMaterial.setQuantidade(EntradaSaida.quantidadeDeProdutos());
-					listaDeCadastrados.add(novoMaterial);
-                    for(Materiais mat : listaDeCadastrados){
-                        System.out.println(mat.getCodigoNovo());
-                    }
-					var refactor = new Materiais();
-                    refactor.setCodigoNovo(897652);
-                    listaDeCadastrados.set(listaDeCadastrados.indexOf(novoMaterial), refactor);
-					 System.out.println(listaDeCadastrados.get(0).getCodigoNovo()+ listaDeCadastrados.get(0).getQuantidade());
-                    break;
-                case 1:
-                    //Entrada de estoque de produto no estoque
-                    String produto = EntradaSaida.solicitaEscolhaDeProduto();
-                    if(produto.equalsIgnoreCase("Aço")){
+            opcao = EntradaSaida.solicitaUsarioOuComprador();
+            switch (opcao) {
+                case 0:
 
-                    }else if(produto.equalsIgnoreCase("Cimento")){
+                    //check de senha do usuario do sistema
 
-                    } else if (produto.equalsIgnoreCase("Madeira")) {
+                    System.out.println(this.matConstr.getSenha());
+                    login = EntradaSaida.loginDeEntrada();
+                    if(login.equalsIgnoreCase(this.matConstr.getSenha())) {
 
-                    } else if (produto.equalsIgnoreCase("Plastico")) {
+                        do {
+                            escolha = EntradaSaida.solicitaEscolha();
+                            switch (escolha) {
+                                case 0:
 
-                    } else if (produto.equalsIgnoreCase("Tijolo")) {
+                                    //cadastro de produto>>
 
+                                    ProdutoNovo novoMaterial = new ProdutoNovo();
+                                    novoMaterial.setProdutoNovo(EntradaSaida.gerarNovoProduto());
+                                    novoMaterial.setDescricaoNovo(EntradaSaida.gerarNovaDescricao());
+                                    novoMaterial.setCodigoNovo(EntradaSaida.gerarNovoCodigo());
+                                    novoMaterial.setPrecoNovo(EntradaSaida.gerarNovoPreco());
+                                    novoMaterial.setQuantidade(EntradaSaida.quantidadeDeProdutos());
+                                    listaDeCadastrados.add(novoMaterial);
+                                    listaDeMateriais.add(novoMaterial);
+
+                                    //cadastro de produto<<
+                                    break;
+                                case 1:
+
+                                    //Entrada de estoque de produto no estoque>>
+
+                                    String produto = EntradaSaida.solicitaEscolhaDeProduto();
+                                    if (produto.equalsIgnoreCase("Aço")) {
+
+
+                                        EntradaSaida.materialDeEntrada(cadasAco.getOpcao(), cadasAco.getDescricao(),cadasAco.getCodigo(), cadasAco.getPreco());
+                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
+                                        cadasAco.setQuantidade(this.matConstr.adicaoNoEstoque(cadasAco.getQuantidade(), entradaMaterial));
+                                        if (!listaDeMateriais.contains(cadasAco)){
+                                            listaDeMateriais.add(cadasAco);
+                                        }
+
+                                        cadasAco.setEntradaQtd(entradaMaterial);
+                                        listaDeEntrada.add(cadasAco);
+
+
+                                    } else if (produto.equalsIgnoreCase("Cimento")) {
+
+
+                                        EntradaSaida.materialDeEntrada(cadasCimento.getOpcao(), cadasCimento.getDescricao(),cadasCimento.getCodigo(), cadasCimento.getPreco());
+                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
+                                        cadasCimento.setQuantidade(this.matConstr.adicaoNoEstoque(cadasCimento.getQuantidade(), entradaMaterial));
+                                        if (!listaDeMateriais.contains(cadasCimento)){
+                                            listaDeMateriais.add(cadasCimento);
+                                        }
+
+                                        cadasCimento.setEntradaQtd(entradaMaterial);
+                                        listaDeEntrada.add(cadasCimento);
+
+                                    } else if (produto.equalsIgnoreCase("Madeira")) {
+
+                                        EntradaSaida.materialDeEntrada(cadasMadeira.getOpcao(), cadasMadeira.getDescricao(),cadasMadeira.getCodigo(), cadasMadeira.getPreco());
+                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
+                                        cadasMadeira.setQuantidade(this.matConstr.adicaoNoEstoque(cadasMadeira.getQuantidade(), entradaMaterial));
+                                        if (!listaDeMateriais.contains(cadasMadeira)){
+                                            listaDeMateriais.add(cadasMadeira);
+                                        }
+
+                                        cadasMadeira.setEntradaQtd(entradaMaterial);
+                                        listaDeEntrada.add(cadasMadeira);
+
+                                    } else if (produto.equalsIgnoreCase("Plastico")) {
+
+
+                                        EntradaSaida.materialDeEntrada(cadasPlastico.getOpcao(), cadasPlastico.getDescricao(),cadasPlastico.getCodigo(), cadasPlastico.getPreco());
+                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
+                                        cadasPlastico.setQuantidade(this.matConstr.adicaoNoEstoque(cadasPlastico.getQuantidade(), entradaMaterial));
+                                        if (!listaDeMateriais.contains(cadasPlastico)){
+                                            listaDeMateriais.add(cadasPlastico);
+                                        }
+
+                                        cadasPlastico.setEntradaQtd(entradaMaterial);
+                                        listaDeEntrada.add(cadasPlastico);
+
+                                    } else if (produto.equalsIgnoreCase("Tijolo")) {
+
+                                        EntradaSaida.materialDeEntrada(cadasTijolos.getOpcao(), cadasTijolos.getDescricao(),cadasTijolos.getCodigo(), cadasTijolos.getPreco());
+                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
+                                        cadasTijolos.setQuantidade(this.matConstr.adicaoNoEstoque(cadasTijolos.getQuantidade(), entradaMaterial));
+                                        if (!listaDeMateriais.contains(cadasTijolos)){
+                                            listaDeMateriais.add(cadasTijolos);
+                                        }
+
+                                        cadasTijolos.setEntradaQtd(entradaMaterial);
+                                        listaDeEntrada.add(cadasTijolos);
+                                    } else {
+                                        //vidro
+
+
+                                        EntradaSaida.materialDeEntrada(cadasVidros.getOpcao(), cadasVidros.getDescricao(),cadasVidros.getCodigo(), cadasVidros.getPreco());
+                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
+                                        cadasVidros.setQuantidade(this.matConstr.adicaoNoEstoque(cadasVidros.getQuantidade(), entradaMaterial));
+                                        if (!listaDeMateriais.contains(cadasVidros)){
+                                            listaDeMateriais.add(cadasVidros);
+                                        }
+
+                                        cadasVidros.setEntradaQtd(entradaMaterial);
+                                        listaDeEntrada.add(cadasVidros);
+
+                                    }
+
+                                    //Entrada de estoque de produto no estoque<<
+
+                                    break;
+
+                                case 2:
+                                    //verificar lista do estoque
+                                    int escolhaDeLista;
+                                    escolhaDeLista = EntradaSaida.solicitaEscolhaDeLista();
+                                    if(escolhaDeLista==0){
+                                        EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
+                                    } else if (escolhaDeLista==1) {
+                                        EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEntrada());
+                                    }else{
+                                        EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
+                                    }
+
+                                    break;
+                            }
+                            //teste de saida no terminal>>
+                            EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
+
+                            //teste de saida no terminal<<
+
+                        } while (escolha != 3);
                     }else{
-                        //vidro
-
-
+                        EntradaSaida.msgGeral("Senha Incorreta!!!", 2);
                     }
                     break;
                 case 2:
-                    //verificar lista do estoque
+                    //compras
                     break;
+
             }
-        }while(escolha!=3);
+        }while(opcao!=2);
+        EntradaSaida.msgGeral("Encerrando...", 1);
 
 
 
