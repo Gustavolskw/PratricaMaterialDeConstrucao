@@ -1,15 +1,14 @@
-package Model;
+package model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
 
-public class Financeiro {
-	protected int quantidadeCompra;
-	protected  String descricao;
-	protected double valorTotal;
+public class Cupom {
 
-	protected double preco;
+	private String descricao;
+	private int qntde;
+	double valorTotal;
+	double preco;
 	LocalDateTime dataVenda = LocalDateTime.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
@@ -20,14 +19,6 @@ public class Financeiro {
 	public void setDataVenda(LocalDateTime dataVenda) {
 		this.dataVenda = dataVenda;
 	}
-	public int getQuantidadeCompra() {
-		return quantidadeCompra;
-	}
-
-	public void setQuantidadeCompra(int quantidadeCompra) {
-		this.quantidadeCompra = quantidadeCompra;
-	}
-
 
 	public String getDescricao() {
 		return descricao;
@@ -37,6 +28,13 @@ public class Financeiro {
 		this.descricao = descricao;
 	}
 
+	public int getQntde() {
+		return qntde;
+	}
+
+	public void setQntde(int qntde) {
+		this.qntde = qntde;
+	}
 
 	public double getValorTotal() {
 		return valorTotal;
@@ -45,12 +43,13 @@ public class Financeiro {
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-
+	
 	public double getPreco() {
 		return preco;
 	}
-
+	
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
+
 }

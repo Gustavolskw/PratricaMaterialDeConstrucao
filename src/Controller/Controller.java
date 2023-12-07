@@ -3,22 +3,13 @@ package Controller;
 import Model.*;
 import View.EntradaSaida;
 
-import javax.accessibility.AccessibleAction;
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.time.LocalDateTime;
 
 public class Controller {
     MaterialDeConstrucao  matConstr = null;
     public void start(){
         this.matConstr = new MaterialDeConstrucao();
-        Aco cadasAco = new Aco();
-        Cimento cadasCimento = new Cimento();
-        Madeira cadasMadeira = new Madeira();
-        Plastico cadasPlastico = new Plastico();
-        Tijolos cadasTijolos = new Tijolos();
-        Vidros cadasVidros = new Vidros();
-        boolean codigoExistente = false;
         int escolha;
         int opcao;
         int entradaMaterial = 0;
@@ -42,13 +33,18 @@ public class Controller {
 
                                     //cadastro de produto>>
 
-                                    ProdutoNovo novoMaterial = new ProdutoNovo();
-                                    novoMaterial.setProdutoNovo(EntradaSaida.gerarNovoProduto());
-                                    novoMaterial.setDescricaoNovo(EntradaSaida.gerarNovaDescricao());
-                                    novoMaterial.setCodigoNovo(EntradaSaida.gerarNovoCodigo());
-                                    novoMaterial.setPrecoNovo(EntradaSaida.gerarNovoPreco());
-                                    novoMaterial.setQuantidade(EntradaSaida.quantidadeDeProdutos());
-                                    this.matConstr.acionaCadastrado(novoMaterial);
+                                    Material novoMaterial = new Material();
+                                    novoMaterial.setDescricao(EntradaSaida.gerarNovaDescricao());
+									 int addCodigo = EntradaSaida.gerarNovoCodigo();
+									 
+									 while (this.matConstr.validaCodigo(addCodigo)) {
+										  EntradaSaida.msgGeral("O c�digo digitado já foi cadastrado!", -1 );
+										  addCodigo = EntradaSaida.gerarNovoCodigo();
+									 }
+                                    novoMaterial.setCodigo(addCodigo);
+                                    novoMaterial.setPreco(EntradaSaida.gerarNovoPreco());
+                                    novoMaterial.setQtdMaterial(EntradaSaida.quantidadeDeProdutos());
+                                    novoMaterial.setDataEntrada(LocalDateTime.now());
 									 this.matConstr.adicionaMaterial(novoMaterial);
 
                                     //cadastro de produto<<
@@ -56,87 +52,20 @@ public class Controller {
                                 case 1:
 
                                     //Entrada de estoque de produto no estoque>>
+                                    if (this.matConstr.getListaDeMateriais().isEmpty()) {
 
-                                    String produto = EntradaSaida.solicitaEscolhaDeProduto();
-                                    if (produto.equalsIgnoreCase("Aço")) {
+                                        EntradaSaida.msgGeral("Sem Produtos em estoque para dar Entrada", JOptionPane.WARNING_MESSAGE);
 
-
-                                        EntradaSaida.materialDeEntrada(cadasAco.getOpcao(), cadasAco.getDescricao(),cadasAco.getCodigo(), cadasAco.getPreco());
-                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
-                                        cadasAco.setQuantidade(this.matConstr.adicaoNoEstoque(cadasAco.getQuantidade(), entradaMaterial));
-                                        if (!this.matConstr.getListaDeMateriais().contains(cadasAco)){
-											 this.matConstr.adicionaMaterial(cadasAco);
-                                        }
-
-                                        cadasAco.setEntradaQtd(entradaMaterial);
-										 this.matConstr.acionaEntrada(cadasAco);
-
-
-                                    } else if (produto.equalsIgnoreCase("Cimento")) {
-
-
-                                        EntradaSaida.materialDeEntrada(cadasCimento.getOpcao(), cadasCimento.getDescricao(),cadasCimento.getCodigo(), cadasCimento.getPreco());
-                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
-                                        cadasCimento.setQuantidade(this.matConstr.adicaoNoEstoque(cadasCimento.getQuantidade(), entradaMaterial));
-                                        if (!this.matConstr.getListaDeMateriais().contains(cadasCimento)){
-                                            this.matConstr.adicionaMaterial(cadasCimento);
-                                        }
-
-                                        cadasCimento.setEntradaQtd(entradaMaterial);
-										 this.matConstr.acionaEntrada(cadasCimento);
-
-                                    } else if (produto.equalsIgnoreCase("Madeira")) {
-
-                                        EntradaSaida.materialDeEntrada(cadasMadeira.getOpcao(), cadasMadeira.getDescricao(),cadasMadeira.getCodigo(), cadasMadeira.getPreco());
-                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
-                                        cadasMadeira.setQuantidade(this.matConstr.adicaoNoEstoque(cadasMadeira.getQuantidade(), entradaMaterial));
-                                        if (!this.matConstr.getListaDeMateriais().contains(cadasMadeira)){
-											 this.matConstr.adicionaMaterial(cadasMadeira);
-                                        }
-
-                                        cadasMadeira.setEntradaQtd(entradaMaterial);
-										 this.matConstr.acionaEntrada(cadasMadeira);
-
-                                    } else if (produto.equalsIgnoreCase("Plastico")) {
-
-
-                                        EntradaSaida.materialDeEntrada(cadasPlastico.getOpcao(), cadasPlastico.getDescricao(),cadasPlastico.getCodigo(), cadasPlastico.getPreco());
-                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
-                                        cadasPlastico.setQuantidade(this.matConstr.adicaoNoEstoque(cadasPlastico.getQuantidade(), entradaMaterial));
-                                        if (!this.matConstr.getListaDeMateriais().contains(cadasPlastico)){
-											 this.matConstr.adicionaMaterial(cadasPlastico);
-                                        }
-
-                                        cadasPlastico.setEntradaQtd(entradaMaterial);
-										 this.matConstr.acionaEntrada(cadasPlastico);
-
-                                    } else if (produto.equalsIgnoreCase("Tijolo")) {
-
-                                        EntradaSaida.materialDeEntrada(cadasTijolos.getOpcao(), cadasTijolos.getDescricao(),cadasTijolos.getCodigo(), cadasTijolos.getPreco());
-                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
-                                        cadasTijolos.setQuantidade(this.matConstr.adicaoNoEstoque(cadasTijolos.getQuantidade(), entradaMaterial));
-                                        if (!this.matConstr.getListaDeMateriais().contains(cadasTijolos)){
-											 this.matConstr.adicionaMaterial(cadasTijolos);
-                                        }
-
-                                        cadasTijolos.setEntradaQtd(entradaMaterial);
-										 this.matConstr.acionaEntrada(cadasTijolos);
                                     } else {
-                                        //vidro
 
-
-                                        EntradaSaida.materialDeEntrada(cadasVidros.getOpcao(), cadasVidros.getDescricao(),cadasVidros.getCodigo(), cadasVidros.getPreco());
-                                        entradaMaterial =  EntradaSaida.quantidadeDeProdutos();
-                                        cadasVidros.setQuantidade(this.matConstr.adicaoNoEstoque(cadasVidros.getQuantidade(), entradaMaterial));
-                                        if (!this.matConstr.getListaDeMateriais().contains(cadasVidros)){
-											 this.matConstr.adicionaMaterial(cadasVidros);
+                                        int codigoEstoque = EntradaSaida.solicitarCodigo(this.matConstr.gerarListaDeEstoque());
+                                        while (!this.matConstr.validaCodigo(codigoEstoque)) {
+                                            EntradaSaida.msgGeral("Codigo Inexistente!!!",JOptionPane.WARNING_MESSAGE);
+                                            codigoEstoque = EntradaSaida.solicitarCodigo(this.matConstr.gerarListaDeEstoque());
                                         }
-
-                                        cadasVidros.setEntradaQtd(entradaMaterial);
-										 this.matConstr.acionaEntrada(cadasVidros);
-
+                                        int qntdeEstoque = EntradaSaida.solicitarQtdeProdutos();
+                                        this.matConstr.retornaEstoque(qntdeEstoque, codigoEstoque);
                                     }
-
                                     //Entrada de estoque de produto no estoque<<
 
                                     break;
@@ -146,19 +75,16 @@ public class Controller {
                                     int escolhaDeLista;
                                     escolhaDeLista = EntradaSaida.solicitaEscolhaDeLista();
                                     if(escolhaDeLista==0){
-                                        this.matConstr.gerarListaDeEstoque();
-                                    } else if (escolhaDeLista==1) {
-                                       // EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEntrada());
-                                    }else{
-                                       // EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
+                                        EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
+                                    } else{
+                                       EntradaSaida.exibirListaDeCuponsFiscais(this.matConstr.gerarListaDeNotas());
                                     }
 
                                     break;
                             }
                             //teste de saida no terminal>>
-							 String retornoDeInfo = this.matConstr.gerarListaDeEstoque();
-                            EntradaSaida.exibirListaDeEstoque(retornoDeInfo);
-							 //EntradaSaida.exibeNoterminal(listaDeMateriais);
+
+
 
                             //teste de saida no terminal<<
 
@@ -170,6 +96,32 @@ public class Controller {
                     break;
                 case 2:
                     //compras
+                    if(this.matConstr.getListaDeMateriais().isEmpty()){
+                        EntradaSaida.msgGeral("Sem Produtos em estoque para dar Entrada", JOptionPane.WARNING_MESSAGE);
+                    }else{
+                        int codigo  = EntradaSaida.solicitarCodigo(this.matConstr.gerarListaparaCompra());
+                        int qtdParaVender = EntradaSaida.solicitarQtdComprar();
+                        Material materialCompra = this.matConstr.retornaProduto(codigo);
+                        if(materialCompra.getQtdMaterial() - qtdParaVender < 0){
+                            EntradaSaida.msgGeral("Estoque zerado", JOptionPane.WARNING_MESSAGE);
+                        }else {
+                            this.matConstr.venderProduto(codigo, qtdParaVender);
+                            Financeiro nota = new Financeiro();
+                            nota.setDataVenda(LocalDateTime.now());
+                            nota.setDescricao(materialCompra.getDescricao());
+                            nota.setQuantidadeCompra(qtdParaVender);
+                            nota.setPreco(materialCompra.getPreco());
+                            nota.setValorTotal(materialCompra.getPreco() * qtdParaVender);
+                            this.matConstr.gerarCupom(nota);
+
+                        }
+
+
+
+
+
+
+                    }
                     break;
 
             }

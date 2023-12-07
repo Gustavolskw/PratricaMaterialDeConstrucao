@@ -2,151 +2,183 @@ package Model;
 
 import View.EntradaSaida;
 
+import javax.swing.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MaterialDeConstrucao {
-	 private String produto;
-	 private String usuario;
-	 private String senha = "mat0123";
-	 private ArrayList<Materiais> listaDeMateriais= new ArrayList<Materiais>();
-	 private ArrayList<Materiais> listaDeCadastrados= new ArrayList<Materiais>();
-	 private ArrayList<Materiais> listaDeEntrada= new ArrayList<Materiais>();
-	 
-	 //metodos de operaçao
-	 
-	 
-	 public void entradaEmEstoqueVazio(){
-		
-	 }
-	 public int  adicaoNoEstoque(int estoque, int entrada){
-		  return estoque += entrada;
-	 }
-	 public int saidaDeEstoque(int estoque, int saida ){
-		  return estoque-=saida;
-	 }
-	 public String gerarListaDeEstoque(){
-		  String informacao = "";
-		  System.out.println("teste");
-		  for (Materiais material : listaDeMateriais) {
-			   if(material instanceof Aco acoMat) {
-					informacao += "Material - " + acoMat.getOpcao() + " | Descriçao - " + acoMat.getDescricao() + " | Código - " + acoMat.getCodigo() + " | Preço-  R$" + acoMat.getPreco() + " | Quantidade - " + acoMat.getQuantidade() + "\n";
-					
-			   } else if (material instanceof Cimento cimentoMat) {
-					informacao+= "Material - "+cimentoMat.getOpcao() + " | Descriçao - " + cimentoMat.getDescricao() + " | Código - " + cimentoMat.getCodigo() + " | Preço-  R$" + cimentoMat.getPreco() + " | Quantidade - " + cimentoMat.getQuantidade() + "\n";
-			   } else if (material instanceof Madeira madeiraMat) {
-					informacao+="Material - "+ madeiraMat.getOpcao() + " | Descriçao - " + madeiraMat.getDescricao() + " | Código - " + madeiraMat.getCodigo() + " | Preço-  R$" + madeiraMat.getPreco() + " | Quantidade - " + madeiraMat.getQuantidade() + "\n";
-			   } else if (material instanceof Plastico plasMat) {
-					informacao+= "Material - "+plasMat.getOpcao() + " | Descriçao - " + plasMat.getDescricao() + " | Código - " + plasMat.getCodigo() + " | Preço-  R$" + plasMat.getPreco() + " | Quantidade - " + plasMat.getQuantidade() + "\n";
-			   } else if (material instanceof Tijolos tijoMat) {
-					informacao+= "Material - "+tijoMat.getOpcao() + " | Descriçao - " + tijoMat.getDescricao() + " | Código - " + tijoMat.getCodigo() + " | Preço-  R$" + tijoMat.getPreco() + " | Quantidade - " + tijoMat.getQuantidade() + "\n";
-			   } else if (material instanceof Vidros vidroMat) {
-					informacao+= "Material - "+vidroMat.getOpcao() + " | Descriçao - " + vidroMat.getDescricao() + " | Código - " + vidroMat.getCodigo() + " | Preço-  R$" + vidroMat.getPreco() + " | Quantidade - " + vidroMat.getQuantidade() + "\n";
-			   } else if (material instanceof ProdutoNovo prodNovoMat) {
-					informacao+= "Material - "+prodNovoMat.getProdutoNovo() + " | Descriçao - " + prodNovoMat.getDescricaoNovo() + " | Código - " + prodNovoMat.getCodigoNovo() + " | Preço-  R$" + prodNovoMat.getPrecoNovo() + " | Quantidade - " + prodNovoMat.getQuantidade() + "\n";
-			   }
-			   
-		  }
-		  return informacao;
-	 }
-	 public String gerarListaDeEntrada (){
-		  String informacao = "<<<Lista De Entrada>>>\n";
-		  
-		  for (Materiais material : listaDeEntrada) {
-			   if (material instanceof Aco acoMat) {
-					informacao+="Material - "+acoMat.getOpcao() + " | Descriçao - " + acoMat.getDescricao() + " | Código - " + acoMat.getCodigo() + " | Preço-  R$" + acoMat.getPreco() + " | Quantidade - " + acoMat.getEntradaQtd() + "\n";
-			   } else if (material instanceof Cimento cimentoMat) {
-					informacao+= "Material - "+cimentoMat.getOpcao() + " | Descriçao - " + cimentoMat.getDescricao() + " | Código - " + cimentoMat.getCodigo() + " | Preço-  R$" + cimentoMat.getPreco() + " | Quantidade - " + cimentoMat.getEntradaQtd() + "\n";
-			   } else if (material instanceof Madeira madeiraMat) {
-					informacao+="Material - "+ madeiraMat.getOpcao() + " | Descriçao - " + madeiraMat.getDescricao() + " | Código - " + madeiraMat.getCodigo() + " | Preço-  R$" + madeiraMat.getPreco() + " | Quantidade - " + madeiraMat.getEntradaQtd() + "\n";
-			   } else if (material instanceof Plastico plasMat) {
-					informacao+= "Material - "+plasMat.getOpcao() + " | Descriçao - " + plasMat.getDescricao() + " | Código - " + plasMat.getCodigo() + " | Preço-  R$" + plasMat.getPreco() + " | Quantidade - " + plasMat.getEntradaQtd() + "\n";
-			   } else if (material instanceof Tijolos tijoMat) {
-					informacao+= "Material - "+tijoMat.getOpcao() + " | Descriçao - " + tijoMat.getDescricao() + " | Código - " + tijoMat.getCodigo() + " | Preço-  R$" + tijoMat.getPreco() + " | Quantidade - " + tijoMat.getEntradaQtd() + "\n";
-			   } else if (material instanceof Vidros vidroMat) {
-					informacao+= "Material - "+vidroMat.getOpcao() + " | Descriçao - " + vidroMat.getDescricao() + " | Código - " + vidroMat.getCodigo() + " | Preço-  R$" + vidroMat.getPreco() + " | Quantidade - " + vidroMat.getEntradaQtd() + "\n";
-			   } else if (material instanceof ProdutoNovo prodNovoMat) {
-					informacao+= "Material - "+prodNovoMat.getProdutoNovo() + " | Descriçao - " + prodNovoMat.getDescricaoNovo() + " | Código - " + prodNovoMat.getCodigoNovo() + " | Preço-  R$" + prodNovoMat.getPrecoNovo() + " | Quantidade - " + prodNovoMat.getQuantidade() + "\n";
-			   }
-		  }
-		  return informacao;
-	 }
-	 
-	 public void adicionaMaterial(Materiais mat){
-		  listaDeMateriais.add(mat);
-	 }
-	 public void acionaEntrada(Materiais mat){
-		  listaDeEntrada.add(mat);
-	 }
-	 public void acionaCadastrado(Materiais mat){
-		  listaDeCadastrados.add(mat);
-	 }
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 //getters e setters de variaveis
-	 
-	 public String getProduto() {
-		  return produto;
-	 }
-	 
-	 public void setProduto(String produto) {
-		  this.produto = produto;
-	 }
-	 
-	 public String getUsuario() {
-		  return usuario;
-	 }
-	 
-	 public void setUsuario(String usuario) {
-		  this.usuario = usuario;
-	 }
-	 
-	 public String getSenha() {
-		  return senha;
-	 }
-	 
-	 public void setSenha(String senha) {
-		  this.senha = senha;
-	 }
-	 
-	 //getters e seetters de listas
-	 
-	 
-	 public ArrayList<Materiais> getListaDeMateriais() {
-		  return listaDeMateriais;
-	 }
-	 
-	 public void setListaDeMateriais(ArrayList<Materiais> listaDeMateriais) {
-		  this.listaDeMateriais = listaDeMateriais;
-	 }
-	 
-	 public ArrayList<Materiais> getListaDeCadastrados() {
-		  return listaDeCadastrados;
-	 }
-	 
-	 public void setListaDeCadastrados(ArrayList<Materiais> listaDeCadastrados) {
-		  this.listaDeCadastrados = listaDeCadastrados;
-	 }
-	 
-	 public ArrayList<Materiais> getListaDeEntrada() {
-		  return listaDeEntrada;
-	 }
-	 
-	 public void setListaDeEntrada(ArrayList<Materiais> listaDeEntrada) {
-		  this.listaDeEntrada = listaDeEntrada;
-	 }
+	private String produto;
+	private String usuario;
+	private String senha = "mat0123";
+	private ArrayList<Material> listaDeMateriais= new ArrayList<Material>();
+	private ArrayList<Financeiro> listaDeNotasFiscais = new ArrayList<Financeiro>();
+	DecimalFormat df = new DecimalFormat("#0.00");
+
+	//metodos de operaçao
+
+
+	public void adicionaMaterial(Material mat){
+		listaDeMateriais.add(mat);
+	}
+
+	public Material retornaProduto(int codigo) {
+
+		Material materialSolicitado = null;
+
+		for (int i = 0; i<listaDeMateriais.size(); i++){
+
+			Material materialProcurado = listaDeMateriais.get(i);
+
+			if(materialProcurado .getCodigo() == codigo){
+				materialSolicitado = materialProcurado;
+			}
+		}
+		return materialSolicitado;
+	}
+
+	public void venderProduto(int codigo, int quantidadeVend ){
+		boolean produtoVendido = false;
+
+		for (int i = 0; i<listaDeMateriais.size(); i++){
+			Material produto = listaDeMateriais.get(i);
+			if(produto.getCodigo() == codigo){
+				produtoVendido = true;
+				EntradaSaida.exibirVendaProduto(quantidadeVend, produto);
+				int qntd = produto.getQtdMaterial() - quantidadeVend;
+				produto.setQtdMaterial(qntd);
+
+			}
+		}
+		if (!produtoVendido){
+			EntradaSaida.msgGeral("Produto Não Esncontrado ", JOptionPane.WARNING_MESSAGE);
+		}
+
+	}
+	public boolean validaCodigo(int addCodigo) {
+
+		for (int i = 0; i < listaDeMateriais.size(); i++) {
+
+			Material material = listaDeMateriais.get(i);
+
+			if (material.getCodigo() == addCodigo) {
+
+				return true;
+
+			}
+		}
+
+		return false;
+	}
+	public void gerarCupom(Financeiro notaFiscal) {
+
+		listaDeNotasFiscais.add(notaFiscal);
+	}
+
+	public String gerarListaDeEstoque() {
+		String info = "Lista de Estoque";
+		for(Material material : listaDeMateriais){
+			info+="Descriçao - "+material.getDescricao()+" | Codigo - "+material.getCodigo()+" | Valor - R$"+df.format(material.getPreco())+" Und | Quantidade Em estoque"+material.getQtdMaterial()+" | Data de Entrada - "+material.getDataEntrada();
+		}
+		return info;
+	}
+	public String gerarListaparaCompra() {
+		String info = "Lista de Estoque";
+		for(Material material : listaDeMateriais){
+			info+="Descriçao - "+material.getDescricao()+" | Codigo - "+material.getCodigo()+" | Valor - R$"+df.format(material.getPreco());
+		}
+		return info;
+	}
+	public void retornaEstoque(int qntdeEstoque, int codigoEstoque) {
+		for (int i = 0; i < listaDeMateriais.size(); i++) {
+
+			Material produto = listaDeMateriais.get(i);
+
+			if (produto.getCodigo() == codigoEstoque) {
+				produto.setQtdMaterial(produto.getQtdMaterial() + qntdeEstoque);
+				EntradaSaida.msgGeral("Item(ns) Adicionado ao estoque", JOptionPane.INFORMATION_MESSAGE);
+
+			}
+		}
+	}
+	public String gerarListaDeNotas() {
+		String info = "Notas Fiscais";
+		for(Financeiro notaFiscal : listaDeNotasFiscais){
+			info+="Descriçao - "+ notaFiscal.getDescricao()+" || quantidade Comprada - "+notaFiscal.getQuantidadeCompra()+" || Preço Unitario - R$"+notaFiscal.getPreco()+"\n Valor Total: R$"+notaFiscal.getValorTotal()+"\n\n";
+		}
+		return info;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//getters e setters de variaveis
+
+	public String getProduto() {
+		return produto;
+	}
+
+	public void setProduto(String produto) {
+		this.produto = produto;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	//getters e seetters de listas
+
+
+	public ArrayList<Material> getListaDeMateriais() {
+		return listaDeMateriais;
+	}
+
+	public void setListaDeMateriais(ArrayList<Material> listaDeMateriais) {
+		this.listaDeMateriais = listaDeMateriais;
+	}
+
+
+	public ArrayList<Financeiro> getListaDeNotasFiscais() {
+		return listaDeNotasFiscais;
+	}
+
+	public void setListaDeNotasFiscais(ArrayList<Financeiro> listaDeNotasFiscais) {
+		this.listaDeNotasFiscais = listaDeNotasFiscais;
+	}
 }
