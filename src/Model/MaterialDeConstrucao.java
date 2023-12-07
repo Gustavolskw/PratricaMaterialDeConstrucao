@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class MaterialDeConstrucao {
-	private String produto;
-	private String usuario;
-	private String senha = "mat0123";
 	private ArrayList<Material> listaDeMateriais= new ArrayList<Material>();
 	private ArrayList<Financeiro> listaDeNotasFiscais = new ArrayList<Financeiro>();
 	DecimalFormat df = new DecimalFormat("#0.00");
@@ -120,7 +117,7 @@ public class MaterialDeConstrucao {
 	public String gerarListaDeNotas() {
 		String info = "Notas Fiscais\n";
 		for(Financeiro notaFiscal : listaDeNotasFiscais){
-			info+="Descriçao - "+ notaFiscal.getDescricao()+" || quantidade Comprada - "+notaFiscal.getQuantidadeCompra()+" || Preço Unitario - R$"+df.format(notaFiscal.getPreco())+"\n Valor Total: R$"+df.format(notaFiscal.getValorTotal())+"\n\n";
+			info+="Descriçao - "+ notaFiscal.getDescricao()+" || quantidade Comprada - "+notaFiscal.getQuantidadeCompra()+" || Preço Unitario - R$"+df.format(notaFiscal.getPreco())+"\n Valor Total: R$"+df.format(notaFiscal.getValorTotal())+"Data - "+notaFiscal.getDataVenda()+"\n\n";
 		}
 		return info;
 	}
@@ -215,29 +212,12 @@ public class MaterialDeConstrucao {
 
 	//getters e setters de variaveis
 
-	public String getProduto() {
-		return produto;
-	}
 
-	public void setProduto(String produto) {
-		this.produto = produto;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
 
 	public String getSenha() {
-		return senha;
+        return "mat0123";
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 
 
 	//getters e seetters de listas
@@ -247,16 +227,10 @@ public class MaterialDeConstrucao {
 		return listaDeMateriais;
 	}
 
-	public void setListaDeMateriais(ArrayList<Material> listaDeMateriais) {
-		this.listaDeMateriais = listaDeMateriais;
-	}
 
 
 	public ArrayList<Financeiro> getListaDeNotasFiscais() {
 		return listaDeNotasFiscais;
 	}
 
-	public void setListaDeNotasFiscais(ArrayList<Financeiro> listaDeNotasFiscais) {
-		this.listaDeNotasFiscais = listaDeNotasFiscais;
-	}
 }

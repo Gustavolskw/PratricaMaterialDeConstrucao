@@ -3,7 +3,6 @@ package View;
 import Model.*;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class EntradaSaida {
@@ -30,7 +29,7 @@ public class EntradaSaida {
         int  escolha = JOptionPane.showOptionDialog(null, "Opcoes de criação de codigo novo", "Material de Construçao ", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcoes, opcoes[0]);
         if (escolha == 0 ){
             Random random = new Random();
-            return codigoGerado = random.nextInt(1,99);
+            return random.nextInt(1,99);
         }else{
             codigoGerado= Integer.parseInt(JOptionPane.showInputDialog(null, "Digite Um valor com (2) digitos para cadastrar como o codigo do produto "));
             while(codigoGerado>99){

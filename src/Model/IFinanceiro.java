@@ -3,11 +3,11 @@ package Model;
 import java.time.LocalDateTime;
 
 public interface IFinanceiro {
-    public void setDataVenda(LocalDateTime dataVenda);
-    public void setQuantidadeCompra(int quantidadeCompra);
-    public void setDescricao(String descricao);
-    public void setValorTotal(double valorTotal);
-    public void setPreco(double preco);
+    void setDataVenda(LocalDateTime dataVenda);
+    void setQuantidadeCompra(int quantidadeCompra);
+    void setDescricao(String descricao);
+    void setValorTotal(double valorTotal);
+    void setPreco(double preco);
 
 
 }
