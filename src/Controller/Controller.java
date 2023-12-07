@@ -8,12 +8,16 @@ import java.time.LocalDateTime;
 
 public class Controller {
     MaterialDeConstrucao  matConstr = null;
+
     public void start(){
         this.matConstr = new MaterialDeConstrucao();
         int escolha;
         int opcao;
-        int entradaMaterial = 0;
+        int qtdCompras = 0;
         String login;
+
+
+        this.matConstr.preCadastroDeProdutoNoEstoque();
 
         do {
             opcao = EntradaSaida.solicitaUsarioOuComprador();
@@ -34,18 +38,25 @@ public class Controller {
                                     //cadastro de produto>>
 
                                     Material novoMaterial = new Material();
-                                    novoMaterial.setDescricao(EntradaSaida.gerarNovaDescricao());
-									 int addCodigo = EntradaSaida.gerarNovoCodigo();
-									 
-									 while (this.matConstr.validaCodigo(addCodigo)) {
-										  EntradaSaida.msgGeral("O c�digo digitado já foi cadastrado!", -1 );
-										  addCodigo = EntradaSaida.gerarNovoCodigo();
-									 }
+
+                                    String descricao = EntradaSaida.gerarNovaDescricao();
+                                    while(this.matConstr.validaProduto(descricao)) {
+                                        EntradaSaida.msgGeral("Produto já em estoque!", -1 );
+                                        descricao = EntradaSaida.gerarNovaDescricao();
+                                    }
+                                    novoMaterial.setDescricao(descricao);
+
+                                    int addCodigo = EntradaSaida.gerarNovoCodigo();
+
+                                    while (this.matConstr.validaCodigo(addCodigo)) {
+                                        EntradaSaida.msgGeral("O código digitado já foi cadastrado!", -1 );
+                                        addCodigo = EntradaSaida.gerarNovoCodigo();
+                                    }
                                     novoMaterial.setCodigo(addCodigo);
                                     novoMaterial.setPreco(EntradaSaida.gerarNovoPreco());
                                     novoMaterial.setQtdMaterial(EntradaSaida.quantidadeDeProdutos());
                                     novoMaterial.setDataEntrada(LocalDateTime.now());
-									 this.matConstr.adicionaMaterial(novoMaterial);
+                                    this.matConstr.adicionaMaterial(novoMaterial);
 
                                     //cadastro de produto<<
                                     break;
@@ -76,77 +87,54 @@ public class Controller {
                                     escolhaDeLista = EntradaSaida.solicitaEscolhaDeLista();
                                     if(escolhaDeLista==0){
                                         EntradaSaida.exibirListaDeEstoque(this.matConstr.gerarListaDeEstoque());
-                                    } else{
-                                       EntradaSaida.exibirListaDeCuponsFiscais(this.matConstr.gerarListaDeNotas());
+                                    } else if (escolhaDeLista == 1 ){
+                                        if(this.matConstr.getListaDeNotasFiscais().isEmpty()){
+                                            EntradaSaida.msgGeral("nao há Notas Fiscais ", JOptionPane.WARNING_MESSAGE);
+                                        }else {
+                                            EntradaSaida.exibirListaDeCuponsFiscais(this.matConstr.gerarListaDeNotas());
+                                        }
+                                    }else {
+                                        if (qtdCompras == 0) {
+                                            EntradaSaida.msgGeral("Não há Vendas ", JOptionPane.WARNING_MESSAGE);
+                                        } else {
+                                            EntradaSaida.exibeTotalVendido(matConstr.retornaTotalComprado(), qtdCompras);
+                                        }
                                     }
 
                                     break;
+
                             }
-                            //teste de saida no terminal>>
-
-
-
-                            //teste de saida no terminal<<
-
                         } while (escolha != 3);
                     }else{
                         EntradaSaida.msgGeral("Senha Incorreta!!!", 2);
-						
                     }
                     break;
-                case 2:
+                case 1:
                     //compras
+                    EntradaSaida.msgGeral("Seja Bem Vindo a Loja do material de Construçao", JOptionPane.PLAIN_MESSAGE);
                     if(this.matConstr.getListaDeMateriais().isEmpty()){
                         EntradaSaida.msgGeral("Sem Produtos em estoque para dar Entrada", JOptionPane.WARNING_MESSAGE);
                     }else{
-                        int codigo  = EntradaSaida.solicitarCodigo(this.matConstr.gerarListaparaCompra());
+                        int codigo = EntradaSaida.solicitarCodigoCompra(this.matConstr.gerarListaparaCompra());
                         int qtdParaVender = EntradaSaida.solicitarQtdComprar();
                         Material materialCompra = this.matConstr.retornaProduto(codigo);
-                        if(materialCompra.getQtdMaterial() - qtdParaVender < 0){
+                        if (materialCompra.getQtdMaterial() - qtdParaVender < 0) {
                             EntradaSaida.msgGeral("Estoque zerado", JOptionPane.WARNING_MESSAGE);
-                        }else {
-                            this.matConstr.venderProduto(codigo, qtdParaVender);
-                            Financeiro nota = new Financeiro();
-                            nota.setDataVenda(LocalDateTime.now());
-                            nota.setDescricao(materialCompra.getDescricao());
-                            nota.setQuantidadeCompra(qtdParaVender);
-                            nota.setPreco(materialCompra.getPreco());
-                            nota.setValorTotal(materialCompra.getPreco() * qtdParaVender);
-                            this.matConstr.gerarCupom(nota);
-
                         }
-
-
-
-
-
-
+                        this.matConstr.venderProduto(codigo, qtdParaVender);
+                        Financeiro nota = new Financeiro();
+                        nota.setDataVenda(LocalDateTime.now());
+                        nota.setDescricao(materialCompra.getDescricao());
+                        nota.setQuantidadeCompra(qtdParaVender);
+                        nota.setPreco(materialCompra.getPreco());
+                        nota.setValorTotal(materialCompra.getPreco() * qtdParaVender);
+                        this.matConstr.gerarNota(nota);
+                        qtdCompras++;
                     }
                     break;
-
             }
         }while(opcao!=2);
         EntradaSaida.msgGeral("Encerrando...", 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

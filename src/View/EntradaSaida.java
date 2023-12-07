@@ -19,7 +19,7 @@ public class EntradaSaida {
     }
 
     public static int solicitaEscolhaDeLista(){
-        String [] option = {"Estoque geral ", "Notas Fiscais"};
+        String [] option = {"Estoque geral ", "Notas Fiscais", "Total Vendido"};
         return JOptionPane.showOptionDialog(null,"Escolha a Lista de Controle ", "Material de construção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null , option, option[0] );
 
     }
@@ -66,11 +66,14 @@ public class EntradaSaida {
     }
 
     public static void exibirVendaProduto(int qtd , Material produto){
-        JOptionPane.showMessageDialog(null, "Voc� vendeu " + qtd + " " + produto.getDescricao());
+        JOptionPane.showMessageDialog(null, "Venda de " + qtd + " " + produto.getDescricao()+"(s) Bem sucedida ");
     }
 
     public static int solicitarCodigo(String listaDeMateriais) {
         return Integer.parseInt(JOptionPane.showInputDialog(null, listaDeMateriais, "Digite o Codigo do produto que deseja dar Entrada ao estoque", JOptionPane.PLAIN_MESSAGE));
+    }
+    public static int solicitarCodigoCompra(String listaDeMateriais) {
+        return Integer.parseInt(JOptionPane.showInputDialog(null, listaDeMateriais, "Digite o Codigo do produto que deseja Comprar", JOptionPane.PLAIN_MESSAGE));
     }
 
     public static int solicitarQtdeProdutos() {
@@ -78,5 +81,8 @@ public class EntradaSaida {
     }
     public static int solicitarQtdComprar() {
         return Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a Quantidade que deseja Comprar"));
+    }
+    public static void exibeTotalVendido(String valor, int qtdVendas){
+        JOptionPane.showMessageDialog(null, "Foi vendido um total de: R$"+valor+ " em "+ qtdVendas+" vendas");
     }
 }

@@ -2,9 +2,8 @@ package Model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Random;
 
-public class Financeiro {
+public class Financeiro implements IFinanceiro {
 	protected int quantidadeCompra;
 	protected  String descricao;
 	protected double valorTotal;
